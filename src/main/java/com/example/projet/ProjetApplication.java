@@ -44,5 +44,15 @@ public class ProjetApplication implements CommandLineRunner {
         System.out.println(cd);
         final DVD dvd = documentService.saveDVD("Pokemon the Movie : Mewtwo Strike Back !", "Kunihiko Yuyama", "Choji Yoshikawa", LocalDate.of(1998, 7, 18), "film");
         System.out.println(dvd);
+
+        bibliotheque.getDocuments().add(livre);
+        bibliotheque.getDocuments().add(cd);
+        bibliotheque.getDocuments().add(dvd);
+
+        bibliothequeService.saveBibliotheque(bibliotheque);
+        System.out.println(bibliotheque);
+
+        bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
+        System.out.println(livre.getBibliotheque());
     }
 }

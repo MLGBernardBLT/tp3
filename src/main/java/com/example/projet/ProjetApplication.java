@@ -1,6 +1,5 @@
 package com.example.projet;
 
-import com.example.projet.model.Bibliotheque;
 import com.example.projet.model.document.Document;
 import com.example.projet.service.BibliothequeService;
 import com.example.projet.service.DocumentService;
@@ -8,9 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.print.Doc;
 import java.time.LocalDate;
-import java.util.Properties;
 
 @SpringBootApplication
 public class ProjetApplication implements CommandLineRunner {

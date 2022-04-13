@@ -1,6 +1,7 @@
 package com.example.projet;
 
 import com.example.projet.model.Bibliotheque;
+import com.example.projet.model.document.CD;
 import com.example.projet.model.document.Document;
 import com.example.projet.model.document.Livre;
 import com.example.projet.service.BibliothequeService;
@@ -38,5 +39,7 @@ public class ProjetApplication implements CommandLineRunner {
 
         final Livre livre = documentService.saveLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010, 8, 21), "roman", 235);
         System.out.println(livre);
+        final CD cd = documentService.saveCD("Rise of the Monarch", "AmaLee", "Leegion Creative", LocalDate.of(2022, 9, 21), "album");
+        System.out.println(cd);
     }
 }

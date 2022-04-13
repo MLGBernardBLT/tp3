@@ -14,4 +14,8 @@ public class BibliothequeService {
     public BibliothequeService(BibliothequeRepositery bibliothequeRepositery) {
         this.bibliothequeRepositery = bibliothequeRepositery;
     }
+
+    public Bibliotheque saveBibliotheque(String nomBiblio) {
+        return bibliothequeRepositery.save(new Bibliotheque(nomBiblio));
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.projet;
 
+import com.example.projet.model.Bibliotheque;
 import com.example.projet.model.document.Document;
 import com.example.projet.service.BibliothequeService;
 import com.example.projet.service.DocumentService;
@@ -28,6 +29,10 @@ public class ProjetApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
+        // même si on n'a qu'une seule bibliotheque, je veux tout de même
+        // avoir une bibliotheque dans ma base de données qui est
+        // JavaTown.
+        final Bibliotheque bibliotheque = bibliothequeService.saveBibliotheque("JavaTown");
+        System.out.println(bibliotheque);
     }
 }

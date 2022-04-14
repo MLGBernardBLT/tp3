@@ -3,6 +3,7 @@ package com.example.projet.service;
 import com.example.projet.model.Bibliotheque;
 import com.example.projet.repositery.BibliothequeRepositery;
 import com.example.projet.repositery.CDRepository;
+import com.example.projet.repositery.DVDRepositery;
 import com.example.projet.repositery.LivreRepositery;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +14,16 @@ public class BibliothequeService {
     private final BibliothequeRepositery bibliothequeRepositery;
     private final LivreRepositery livreRepositery;
     private final CDRepository cdRepositery;
+    private DVDRepositery dvdRepositery;
 
     public BibliothequeService(BibliothequeRepositery bibliothequeRepositery,
                                 LivreRepositery livreRepositery,
-                                CDRepository cdRepositery) {
+                                CDRepository cdRepositery,
+                                DVDRepositery dvdRepositery) {
         this.bibliothequeRepositery = bibliothequeRepositery;
         this.livreRepositery = livreRepositery;
         this.cdRepositery = cdRepositery;
+        this.dvdRepositery = dvdRepositery;
     }
 
     public Bibliotheque saveBibliotheque(String nomBiblio) {
@@ -59,6 +63,22 @@ public class BibliothequeService {
         cd.setBibliotheque(bibliotheque);
         bibliotheque.setDocuments(bibliotheque.getDocuments());
         cdRepositery.save(cd);
+        bibliothequeRepositery.save(bibliotheque);
+    }
+
+    public void addDVDToBibliotheque(long dvdId, long bibliothequeId) {
+        var dvdOpt = dvdRepositery.findByIdWithBibliotheque(dvdId);
+        var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
+
+        if(dvdOpt.isEmpty() || bibliothequeOpt.isEmpty()){
+            return;
+        }
+        var dvd = dvdOpt.get();
+        var bibliotheque = bibliothequeOpt.get();
+
+        dvd.setBibliotheque(bibliotheque);
+        bibliotheque.setDocuments(bibliotheque.getDocuments());
+        dvdRepositery.save(dvd);
         bibliothequeRepositery.save(bibliotheque);
     }
 }

@@ -53,7 +53,7 @@ public class ProjetApplication implements CommandLineRunner {
         System.out.println(bibliotheque);
 
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
-
         bibliothequeService.addCDToBibliotheque(cd.getId(), bibliotheque.getId());
+        bibliothequeService.addDVDToBibliotheque(dvd.getId(), bibliotheque.getId());
     }
 }

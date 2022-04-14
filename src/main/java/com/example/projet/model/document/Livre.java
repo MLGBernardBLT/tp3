@@ -18,8 +18,9 @@ import java.time.LocalDate;
 public class Livre extends Document {
     private int nbrePage;
 
-    public Livre(String titre, String auteur, String editeur, LocalDate anneePublication, String genre, int nbrePage) {
-        super(titre, auteur, editeur, anneePublication, genre);
+    public Livre(String titre, String auteur, String editeur, LocalDate anneePublication,
+                 String genre, int nbrePage, int exemplaires) {
+        super(titre, auteur, editeur, anneePublication, genre, exemplaires);
         this.nbrePage = nbrePage;
     }
 }

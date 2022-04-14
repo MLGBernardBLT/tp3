@@ -25,8 +25,8 @@ public class DocumentService {
 
     public Livre saveLivre(String nom, String auteur, String editeur,
                            LocalDate dateParution, String genre,
-                           int nbrePage) {
-        return livreRepositery.save(new Livre(nom, auteur, editeur, dateParution, genre, nbrePage));
+                           int nbrePage, int exemplaires) {
+        return livreRepositery.save(new Livre(nom, auteur, editeur, dateParution, genre, nbrePage, exemplaires));
     }
 
     public Livre saveLivre(Livre livre){
@@ -35,8 +35,8 @@ public class DocumentService {
 
     public CD saveCD(String nom, String auteur, String editeur,
                      LocalDate dateParution,
-                     String genre) {
-        return cdRepositery.save(new CD(nom, auteur, editeur, dateParution, genre));
+                     String genre, int exemplaires) {
+        return cdRepositery.save(new CD(nom, auteur, editeur, dateParution, genre, exemplaires));
     }
 
     public CD saveCD(CD cd){
@@ -45,8 +45,8 @@ public class DocumentService {
 
     public DVD saveDVD(String nom, String regiseur, String editeur,
                        LocalDate dateParution,
-                       String genre) {
-        return dvdRepositery.save(new DVD(nom, regiseur, editeur, dateParution, genre));
+                       String genre, int exemplaires) {
+        return dvdRepositery.save(new DVD(nom, regiseur, editeur, dateParution, genre, exemplaires));
     }
 
     public DVD saveDVD(DVD dvd){

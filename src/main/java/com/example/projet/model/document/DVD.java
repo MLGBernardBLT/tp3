@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @SuperBuilder
 @ToString(callSuper = true)
 public class DVD extends Document {
-    public DVD(String titre, String auteur, String editeur, LocalDate anneePublication, String genre) {
-        super(titre, auteur, editeur, anneePublication, genre);
+    public DVD(String titre, String auteur, String editeur, LocalDate anneePublication, String genre, int exemplaires) {
+        super(titre, auteur, editeur, anneePublication, genre, exemplaires);
     }
 }

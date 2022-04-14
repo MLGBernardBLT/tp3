@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @SuperBuilder
 @ToString(callSuper = true)
 public class CD extends Document {
-    public CD(String titre, String auteur, String editeur, LocalDate anneePublication, String genre) {
-        super(titre, auteur, editeur, anneePublication, genre);
+    public CD(String titre, String auteur, String editeur, LocalDate anneePublication, String genre, int exemplaires) {
+        super(titre, auteur, editeur, anneePublication, genre, exemplaires);
     }
 }

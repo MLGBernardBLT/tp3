@@ -32,7 +32,8 @@ public class Emprunt {
     private LocalDateTime dateEmprunt;
     private LocalDateTime dateRemiseMax;
 
-    public Emprunt(Utilisateur emprunteur, List<Document> documents, LocalDateTime dateEmprunt, LocalDateTime dateRemiseMax) {
+    public Emprunt(Utilisateur emprunteur, List<Document> documents,
+                   LocalDateTime dateEmprunt, LocalDateTime dateRemiseMax) {
         this.emprunteur = emprunteur;
         this.documents = documents;
         this.dateEmprunt = dateEmprunt;

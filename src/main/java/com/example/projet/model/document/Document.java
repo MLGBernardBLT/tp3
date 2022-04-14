@@ -39,12 +39,14 @@ public abstract class Document {
     private List<Emprunt> emprunts = new ArrayList<>();
     private int exemplaires;
 
-    public Document(String titre, String auteur, String editeur, LocalDate anneePublication, String genre) {
+    public Document(String titre, String auteur, String editeur,
+                    LocalDate anneePublication, String genre, int exemplaires) {
         this.titre = titre;
         this.auteur = auteur;
         this.editeur = editeur;
         this.anneePublication = anneePublication;
         this.genre = genre;
+        this.exemplaires = exemplaires;
     }
 
     public void ajoutExemplaire() {

@@ -39,16 +39,20 @@ public class ProjetApplication implements CommandLineRunner {
         final Bibliotheque bibliotheque = bibliothequeService.saveBibliotheque("JavaTown");
 //        System.out.println(bibliotheque);
 
-        final Livre livre = documentService.saveLivre("red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010, 8, 21), "roman", 235);
+        final Livre livre = documentService.saveLivre("red Eyes Sword", "Takahiro", "Kurokawa",
+                LocalDate.of(2010, 8, 21), "roman", 235, 1);
 //        System.out.println(livre);
-        final CD cd = documentService.saveCD("Rise of the red Monarch", "AmaLee", "Leegion Creative", LocalDate.of(2022, 9, 21), "album");
+        final CD cd = documentService.saveCD("Rise of the red Monarch", "AmaLee", "Leegion Creative",
+                LocalDate.of(2022, 9, 21), "album", 1);
 //        System.out.println(cd);
-        final DVD dvd = documentService.saveDVD("Pokemon the Movie : Mewtwo Strike Back !", "Kunihiko Yuyama", "Choji Yoshikawa", LocalDate.of(1998, 7, 18), "film");
+        final DVD dvd = documentService.saveDVD("Pokemon the Movie : Mewtwo Strike Back !",
+                "Kunihiko Yuyama", "Choji Yoshikawa", LocalDate.of(1998, 7, 18),
+                "film", 1);
 //        System.out.println(dvd);
 
         bibliothequeService.saveBibliotheque(bibliotheque);
 //        System.out.println(bibliotheque);
-        
+
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
         System.out.println(livre.getBibliotheque());
         System.out.println(bibliotheque.getDocuments());
@@ -71,11 +75,14 @@ public class ProjetApplication implements CommandLineRunner {
         List<Document> rechercheDocumentAuteur3 = bibliothequeService.findByAuteurDocuments("Kunihiko Yuyama");
 //        System.out.println(rechercheDocumentAuteur3);
 
-        List<Document> rechercheDocumentDateParution1 = bibliothequeService.findByDateParutionDocuments(LocalDate.of(2010, 8, 21));
+        List<Document> rechercheDocumentDateParution1 = bibliothequeService
+                .findByDateParutionDocuments(LocalDate.of(2010, 8, 21));
 //        System.out.println(rechercheDocumentDateParution1);
-        List<Document> rechercheDocumentDateParution2 = bibliothequeService.findByDateParutionDocuments(LocalDate.of(2022, 9, 21));
+        List<Document> rechercheDocumentDateParution2 = bibliothequeService
+                .findByDateParutionDocuments(LocalDate.of(2022, 9, 21));
 //        System.out.println(rechercheDocumentDateParution2);
-        List<Document> rechercheDocumentDateParution3 = bibliothequeService.findByDateParutionDocuments(LocalDate.of(1998, 7, 18));
+        List<Document> rechercheDocumentDateParution3 = bibliothequeService
+                .findByDateParutionDocuments(LocalDate.of(1998, 7, 18));
 //        System.out.println(rechercheDocumentDateParution3);
 
         List<Document> rechercheDocumentGenre1 = bibliothequeService.findByGenreDocuments("roman");
@@ -85,17 +92,6 @@ public class ProjetApplication implements CommandLineRunner {
         List<Document> rechercheDocumentGenre3 = bibliothequeService.findByGenreDocuments("album");
 //        System.out.println(rechercheDocumentGenre3);
 
-
-        //Faire des modifications pour avoir au moins un livre
-        livre.setExemplaires(1);
-        documentService.saveLivre(livre);
-        bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
-        System.out.println(livre.getExemplaires());
-        cd.setExemplaires(1);
-        documentService.saveCD(cd);
-        bibliothequeService.addCDToBibliotheque(cd.getId(), bibliotheque.getId());
-        dvd.setExemplaires(1);
-        documentService.saveDVD(dvd);
-        bibliothequeService.addDVDToBibliotheque(dvd.getId(), bibliotheque.getId());
+        
     }
 }

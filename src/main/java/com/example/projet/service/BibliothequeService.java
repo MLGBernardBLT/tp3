@@ -114,4 +114,12 @@ public class BibliothequeService {
         }
         return documentsOpt.get();
     }
+
+    public List<Document> findByGenreDocuments(String genre) {
+        Optional<List<Document>> documentsOpt = documentRepositery.findByGenreDocuments(genre);
+        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+            throw new IllegalArgumentException("aucun document avec cet auteur dans la base de données");
+        }
+        return documentsOpt.get();
+    }
 }

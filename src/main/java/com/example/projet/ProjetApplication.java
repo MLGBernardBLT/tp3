@@ -10,11 +10,9 @@ import com.example.projet.service.DocumentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.print.Doc;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+
 
 @SpringBootApplication
 public class ProjetApplication implements CommandLineRunner {
@@ -82,5 +80,12 @@ public class ProjetApplication implements CommandLineRunner {
 //        System.out.println(rechercheDocumentDateParution2);
         List<Document> rechercheDocumentDateParution3 = bibliothequeService.findByDateParutionDocuments(LocalDate.of(1998, 7, 18));
 //        System.out.println(rechercheDocumentDateParution3);
+
+        List<Document> rechercheDocumentGenre1 = bibliothequeService.findByGenreDocuments("roman");
+//        System.out.println(rechercheDocumentGenre1);
+        List<Document> rechercheDocumentGenre2 = bibliothequeService.findByGenreDocuments("film");
+//        System.out.println(rechercheDocumentGenre2);
+        List<Document> rechercheDocumentGenre3 = bibliothequeService.findByGenreDocuments("album");
+//        System.out.println(rechercheDocumentGenre3);
     }
 }

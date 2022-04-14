@@ -16,6 +16,10 @@ public interface DocumentRepositery extends JpaRepository<Document, Long> {
     @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.auteur LIKE %:auteurDocument%")
     Optional<List<Document>> findByAuteurDocuments(@Param("auteurDocument") String auteur);
 
-    @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.anneePublication = :dateParution")
-    Optional<List<Document>> findByDateParutionDocuments(@Param("dateParution") LocalDate dateParution);
+    @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.anneePublication = :dateParutionDocument")
+    Optional<List<Document>> findByDateParutionDocuments(@Param("dateParutionDocument") LocalDate dateParution);
+
+    @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.genre LIKE :genreDocument")
+    Optional<List<Document>> findByGenreDocuments(@Param("genreDocument") String genre);
+
 }

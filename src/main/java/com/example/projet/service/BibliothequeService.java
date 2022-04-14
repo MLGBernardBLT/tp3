@@ -92,7 +92,7 @@ public class BibliothequeService {
     @Transactional
     public List<Document> findByNameDocuments(String nom) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByNameDocuments(nom);
-        if(documentsOpt.isEmpty()){
+        if(documentsOpt.get().isEmpty()){
             throw new IllegalArgumentException("aucun document avec ce nom dans la base de données");
         }
         List<Document> documents = documentsOpt.get();

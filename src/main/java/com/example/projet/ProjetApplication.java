@@ -39,21 +39,21 @@ public class ProjetApplication implements CommandLineRunner {
         // avoir une bibliotheque dans ma base de données qui est
         // JavaTown.
         final Bibliotheque bibliotheque = bibliothequeService.saveBibliotheque("JavaTown");
-        System.out.println(bibliotheque);
+//        System.out.println(bibliotheque);
 
-        final Livre livre = documentService.saveLivre("Red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010, 8, 21), "roman", 235);
-        System.out.println(livre);
-        final CD cd = documentService.saveCD("Rise of the Monarch", "AmaLee", "Leegion Creative", LocalDate.of(2022, 9, 21), "album");
-        System.out.println(cd);
+        final Livre livre = documentService.saveLivre("red Eyes Sword", "Takahiro", "Kurokawa", LocalDate.of(2010, 8, 21), "roman", 235);
+//        System.out.println(livre);
+        final CD cd = documentService.saveCD("Rise of the red Monarch", "AmaLee", "Leegion Creative", LocalDate.of(2022, 9, 21), "album");
+//        System.out.println(cd);
         final DVD dvd = documentService.saveDVD("Pokemon the Movie : Mewtwo Strike Back !", "Kunihiko Yuyama", "Choji Yoshikawa", LocalDate.of(1998, 7, 18), "film");
-        System.out.println(dvd);
+//        System.out.println(dvd);
 
         bibliotheque.getDocuments().add(livre);
         bibliotheque.getDocuments().add(cd);
         bibliotheque.getDocuments().add(dvd);
 
         bibliothequeService.saveBibliotheque(bibliotheque);
-        System.out.println(bibliotheque);
+//        System.out.println(bibliotheque);
 
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
         bibliothequeService.addCDToBibliotheque(cd.getId(), bibliotheque.getId());
@@ -61,6 +61,10 @@ public class ProjetApplication implements CommandLineRunner {
 
         List<Document> documents = bibliothequeService.findByNameDocuments("Pokemon");
         for (Document document : documents){
+            System.out.println(document);
+        }
+        List<Document> documents2 = bibliothequeService.findByNameDocuments("red");
+        for (Document document : documents2){
             System.out.println(document);
         }
     }

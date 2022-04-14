@@ -66,6 +66,7 @@ public class ProjetApplication implements CommandLineRunner {
         System.out.println(bibliotheque.getDocuments());
         bibliothequeService.addCDToBibliotheque(cd.getId(), bibliotheque.getId());
         bibliothequeService.addDVDToBibliotheque(dvd.getId(), bibliotheque.getId());
+        bibliothequeService.addEmprunteurToBibliotheque(emprunteur.getId(), bibliotheque.getId());
 
         List<Document> rechercheDocumentsNom1 = bibliothequeService.findByNomDocuments("Pokemon");
 //        for (Document document : rechercheDocumentsNom1){

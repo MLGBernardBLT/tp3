@@ -21,17 +21,20 @@ public class BibliothequeService {
     private final CDRepository cdRepositery;
     private DVDRepositery dvdRepositery;
     private DocumentRepositery documentRepositery;
+    private EmprunteurRepositery emprunteurRepositery;
 
     public BibliothequeService(BibliothequeRepositery bibliothequeRepositery,
                                 LivreRepositery livreRepositery,
                                 CDRepository cdRepositery,
                                 DVDRepositery dvdRepositery,
-                                DocumentRepositery documentRepositery) {
+                                DocumentRepositery documentRepositery,
+                                EmprunteurRepositery emprunteurRepositery) {
         this.bibliothequeRepositery = bibliothequeRepositery;
         this.livreRepositery = livreRepositery;
         this.cdRepositery = cdRepositery;
         this.dvdRepositery = dvdRepositery;
         this.documentRepositery = documentRepositery;
+        this.emprunteurRepositery = emprunteurRepositery;
     }
 
     public Bibliotheque saveBibliotheque(String nomBiblio) {
@@ -94,6 +97,23 @@ public class BibliothequeService {
     }
 
     @Transactional
+    public void addEmprunteurToBibliotheque(long emprunteurId, long bibliothequeId) {
+        var utilisateurOpt = emprunteurRepositery.findByIdWithBibliotheque(emprunteurId);
+        var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
+
+        if(utilisateurOpt.isEmpty() || bibliothequeOpt.isEmpty()){
+            return;
+        }
+        var utilisateur = utilisateurOpt.get();
+        var bibliotheque = bibliothequeOpt.get();
+
+        utilisateur.setBibliotheque(bibliotheque);
+        bibliotheque.setUtilisateurs(bibliotheque.getUtilisateurs());
+        emprunteurRepositery.save(utilisateur);
+        bibliothequeRepositery.save(bibliotheque);
+    }
+
+    @Transactional
     public List<Document> findByNomDocuments(String nom) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByNomDocuments(nom);
         if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
@@ -128,4 +148,5 @@ public class BibliothequeService {
         }
         return documentsOpt.get();
     }
+
 }

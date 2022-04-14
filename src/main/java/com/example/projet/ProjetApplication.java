@@ -60,20 +60,27 @@ public class ProjetApplication implements CommandLineRunner {
         bibliothequeService.addCDToBibliotheque(cd.getId(), bibliotheque.getId());
         bibliothequeService.addDVDToBibliotheque(dvd.getId(), bibliotheque.getId());
 
-        List<Document> documents = bibliothequeService.findByNomDocuments("Pokemon");
-//        for (Document document : documents){
+        List<Document> rechercheDocumentsNom1 = bibliothequeService.findByNomDocuments("Pokemon");
+//        for (Document document : rechercheDocumentsNom1){
 //            System.out.println(document);
 //        }
-        List<Document> documents2 = bibliothequeService.findByNomDocuments("red");
-//        for (Document document : documents2){
+        List<Document> rechercheDocumentsNom2 = bibliothequeService.findByNomDocuments("red");
+//        for (Document document : rechercheDocumentsNom2){
 //            System.out.println(document);
 //        }
 
-        List<Document> documents3 = bibliothequeService.findByAuteurDocuments("Takahiro");
-        System.out.println(documents3);
-        List<Document> documents4 = bibliothequeService.findByAuteurDocuments("AmaLee");
-        System.out.println(documents4);
-        List<Document> documents5 = bibliothequeService.findByAuteurDocuments("Kunihiko Yuyama");
-        System.out.println(documents5);
+        List<Document> rechercheDocumentAuteur1 = bibliothequeService.findByAuteurDocuments("Takahiro");
+//        System.out.println(rechercheDocumentAuteur1);
+        List<Document> rechercheDocumentAuteur2 = bibliothequeService.findByAuteurDocuments("AmaLee");
+//        System.out.println(rechercheDocumentAuteur2);
+        List<Document> rechercheDocumentAuteur3 = bibliothequeService.findByAuteurDocuments("Kunihiko Yuyama");
+//        System.out.println(rechercheDocumentAuteur3);
+
+        List<Document> rechercheDocumentDateParution1 = bibliothequeService.findByDateParutionDocuments(LocalDate.of(2010, 8, 21));
+//        System.out.println(rechercheDocumentDateParution1);
+        List<Document> rechercheDocumentDateParution2 = bibliothequeService.findByDateParutionDocuments(LocalDate.of(2022, 9, 21));
+//        System.out.println(rechercheDocumentDateParution2);
+        List<Document> rechercheDocumentDateParution3 = bibliothequeService.findByDateParutionDocuments(LocalDate.of(1998, 7, 18));
+//        System.out.println(rechercheDocumentDateParution3);
     }
 }

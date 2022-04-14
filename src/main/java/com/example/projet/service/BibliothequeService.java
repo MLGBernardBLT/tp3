@@ -3,9 +3,12 @@ package com.example.projet.service;
 import com.example.projet.model.Bibliotheque;
 import com.example.projet.model.document.Document;
 import com.example.projet.repositery.*;
+import org.apache.tomcat.jni.Local;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.print.Doc;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -98,6 +101,14 @@ public class BibliothequeService {
 
     public List<Document> findByAuteurDocuments(String auteur) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByAuteurDocuments(auteur);
+        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+            throw new IllegalArgumentException("aucun document avec cet auteur dans la base de données");
+        }
+        return documentsOpt.get();
+    }
+
+    public List<Document> findByDateParutionDocuments(LocalDate dateParution) {
+        Optional<List<Document>> documentsOpt = documentRepositery.findByDateParutionDocuments(dateParution);
         if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
             throw new IllegalArgumentException("aucun document avec cet auteur dans la base de données");
         }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,7 @@ public interface DocumentRepositery extends JpaRepository<Document, Long> {
 
     @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.auteur LIKE %:auteurDocument%")
     Optional<List<Document>> findByAuteurDocuments(@Param("auteurDocument") String auteur);
+
+    @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.anneePublication = :dateParution")
+    Optional<List<Document>> findByDateParutionDocuments(@Param("dateParution") LocalDate dateParution);
 }

@@ -5,8 +5,12 @@ import com.example.projet.model.document.CD;
 import com.example.projet.model.document.DVD;
 import com.example.projet.model.document.Document;
 import com.example.projet.model.document.Livre;
+import com.example.projet.model.utilisateur.Emprunteur;
+import com.example.projet.model.utilisateur.Utilisateur;
 import com.example.projet.service.BibliothequeService;
 import com.example.projet.service.DocumentService;
+import com.example.projet.service.UtilisateurService;
+import org.apache.catalina.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,11 +24,14 @@ public class ProjetApplication implements CommandLineRunner {
 
     private final BibliothequeService bibliothequeService;
     private DocumentService documentService;
+    private UtilisateurService utilisateurService;
 
     public ProjetApplication(BibliothequeService bibliothequeService,
-                             DocumentService documentService) {
+                             DocumentService documentService,
+                             UtilisateurService utilisateurService) {
         this.bibliothequeService = bibliothequeService;
         this.documentService = documentService;
+        this.utilisateurService = utilisateurService;
     }
 
     public static void main(String[] args) {
@@ -49,6 +56,7 @@ public class ProjetApplication implements CommandLineRunner {
                 "Kunihiko Yuyama", "Choji Yoshikawa", LocalDate.of(1998, 7, 18),
                 "film", 1);
 //        System.out.println(dvd);
+        final Emprunteur emprunteur = utilisateurService.saveEmprunteur("Thomas Laforest", "Bernard");
 
         bibliothequeService.saveBibliotheque(bibliotheque);
 //        System.out.println(bibliotheque);
@@ -92,6 +100,5 @@ public class ProjetApplication implements CommandLineRunner {
         List<Document> rechercheDocumentGenre3 = bibliothequeService.findByGenreDocuments("album");
 //        System.out.println(rechercheDocumentGenre3);
 
-        
     }
 }

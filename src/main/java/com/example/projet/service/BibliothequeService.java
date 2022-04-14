@@ -2,21 +2,24 @@ package com.example.projet.service;
 
 import com.example.projet.model.Bibliotheque;
 import com.example.projet.repositery.BibliothequeRepositery;
+import com.example.projet.repositery.CDRepository;
 import com.example.projet.repositery.LivreRepositery;
 import org.springframework.stereotype.Component;
 
-import java.util.Properties;
 
 @Component
 public class BibliothequeService {
 
-    private BibliothequeRepositery bibliothequeRepositery;
-    private LivreRepositery livreRepositery;
+    private final BibliothequeRepositery bibliothequeRepositery;
+    private final LivreRepositery livreRepositery;
+    private final CDRepository cdRepositery;
 
     public BibliothequeService(BibliothequeRepositery bibliothequeRepositery,
-                                LivreRepositery livreRepositery) {
+                                LivreRepositery livreRepositery,
+                                CDRepository cdRepositery) {
         this.bibliothequeRepositery = bibliothequeRepositery;
         this.livreRepositery = livreRepositery;
+        this.cdRepositery = cdRepositery;
     }
 
     public Bibliotheque saveBibliotheque(String nomBiblio) {
@@ -40,6 +43,22 @@ public class BibliothequeService {
         livre.setBibliotheque(bibliotheque);
         bibliotheque.setDocuments(bibliotheque.getDocuments());
         livreRepositery.save(livre);
+        bibliothequeRepositery.save(bibliotheque);
+    }
+
+    public void addCDToBibliotheque(long cdId, long bibliothequeId) {
+        var cdOpt = cdRepositery.findByIdWithBibliotheque(cdId);
+        var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
+
+        if(cdOpt.isEmpty() || bibliothequeOpt.isEmpty()){
+            return;
+        }
+        var cd = cdOpt.get();
+        var bibliotheque = bibliothequeOpt.get();
+
+        cd.setBibliotheque(bibliotheque);
+        bibliotheque.setDocuments(bibliotheque.getDocuments());
+        cdRepositery.save(cd);
         bibliothequeRepositery.save(bibliotheque);
     }
 }

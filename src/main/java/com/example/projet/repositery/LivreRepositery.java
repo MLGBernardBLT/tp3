@@ -8,7 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface LivreRepositery extends JpaRepository<Livre, Long> {
-
     @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.id = :livreId")
     Optional<Livre> findByIdWithBibliotheque(@Param("livreId") long livreId);
 }

@@ -48,6 +48,7 @@ public class ProjetApplication implements CommandLineRunner {
         final DVD dvd = documentService.saveDVD("Pokemon the Movie : Mewtwo Strike Back !", "Kunihiko Yuyama", "Choji Yoshikawa", LocalDate.of(1998, 7, 18), "film");
 //        System.out.println(dvd);
 
+
         bibliotheque.getDocuments().add(livre);
         bibliotheque.getDocuments().add(cd);
         bibliotheque.getDocuments().add(dvd);
@@ -59,13 +60,20 @@ public class ProjetApplication implements CommandLineRunner {
         bibliothequeService.addCDToBibliotheque(cd.getId(), bibliotheque.getId());
         bibliothequeService.addDVDToBibliotheque(dvd.getId(), bibliotheque.getId());
 
-        List<Document> documents = bibliothequeService.findByNameDocuments("Pokemon");
-        for (Document document : documents){
-            System.out.println(document);
-        }
-        List<Document> documents2 = bibliothequeService.findByNameDocuments("red");
-        for (Document document : documents2){
-            System.out.println(document);
-        }
+        List<Document> documents = bibliothequeService.findByNomDocuments("Pokemon");
+//        for (Document document : documents){
+//            System.out.println(document);
+//        }
+        List<Document> documents2 = bibliothequeService.findByNomDocuments("red");
+//        for (Document document : documents2){
+//            System.out.println(document);
+//        }
+
+        List<Document> documents3 = bibliothequeService.findByAuteurDocuments("Takahiro");
+        System.out.println(documents3);
+        List<Document> documents4 = bibliothequeService.findByAuteurDocuments("AmaLee");
+        System.out.println(documents4);
+        List<Document> documents5 = bibliothequeService.findByAuteurDocuments("Kunihiko Yuyama");
+        System.out.println(documents5);
     }
 }

@@ -4,10 +4,8 @@ import com.example.projet.model.Bibliotheque;
 import com.example.projet.model.document.Document;
 import com.example.projet.repositery.*;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.print.Doc;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,12 +88,19 @@ public class BibliothequeService {
     }
 
     @Transactional
-    public List<Document> findByNameDocuments(String nom) {
-        Optional<List<Document>> documentsOpt = documentRepositery.findByNameDocuments(nom);
-        if(documentsOpt.get().isEmpty()){
+    public List<Document> findByNomDocuments(String nom) {
+        Optional<List<Document>> documentsOpt = documentRepositery.findByNomDocuments(nom);
+        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
             throw new IllegalArgumentException("aucun document avec ce nom dans la base de données");
         }
-        List<Document> documents = documentsOpt.get();
-        return documents;
+        return documentsOpt.get();
+    }
+
+    public List<Document> findByAuteurDocuments(String auteur) {
+        Optional<List<Document>> documentsOpt = documentRepositery.findByAuteurDocuments(auteur);
+        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+            throw new IllegalArgumentException("aucun document avec cet auteur dans la base de données");
+        }
+        return documentsOpt.get();
     }
 }

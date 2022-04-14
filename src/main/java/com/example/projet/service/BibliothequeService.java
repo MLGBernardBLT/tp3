@@ -1,11 +1,15 @@
 package com.example.projet.service;
 
 import com.example.projet.model.Bibliotheque;
-import com.example.projet.repositery.BibliothequeRepositery;
-import com.example.projet.repositery.CDRepository;
-import com.example.projet.repositery.DVDRepositery;
-import com.example.projet.repositery.LivreRepositery;
+import com.example.projet.model.document.Document;
+import com.example.projet.repositery.*;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.print.Doc;
+import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -15,15 +19,18 @@ public class BibliothequeService {
     private final LivreRepositery livreRepositery;
     private final CDRepository cdRepositery;
     private DVDRepositery dvdRepositery;
+    private DocumentRepositery documentRepositery;
 
     public BibliothequeService(BibliothequeRepositery bibliothequeRepositery,
                                 LivreRepositery livreRepositery,
                                 CDRepository cdRepositery,
-                                DVDRepositery dvdRepositery) {
+                                DVDRepositery dvdRepositery,
+                                DocumentRepositery documentRepositery) {
         this.bibliothequeRepositery = bibliothequeRepositery;
         this.livreRepositery = livreRepositery;
         this.cdRepositery = cdRepositery;
         this.dvdRepositery = dvdRepositery;
+        this.documentRepositery = documentRepositery;
     }
 
     public Bibliotheque saveBibliotheque(String nomBiblio) {
@@ -80,5 +87,15 @@ public class BibliothequeService {
         bibliotheque.setDocuments(bibliotheque.getDocuments());
         dvdRepositery.save(dvd);
         bibliothequeRepositery.save(bibliotheque);
+    }
+
+    @Transactional
+    public List<Document> findByNameDocuments(String nom) {
+        Optional<List<Document>> documentsOpt = documentRepositery.findByNameDocuments(nom);
+        if(documentsOpt.isEmpty()){
+            throw new IllegalArgumentException("aucun document avec ce nom dans la base de données");
+        }
+        List<Document> documents = documentsOpt.get();
+        return documents;
     }
 }

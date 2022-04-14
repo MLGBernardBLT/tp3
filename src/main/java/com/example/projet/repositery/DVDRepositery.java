@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface DVDRepositery extends JpaRepository<DVD, Long> {
-    @Query(value = "SELECT d FROM Document d LEFT JOIN d.bibliotheque b WHERE d.id = :dvdId")
+    @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.id = :dvdId")
     Optional<DVD> findByIdWithBibliotheque(@Param("dvdId") long dvdId);
 }

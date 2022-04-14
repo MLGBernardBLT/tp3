@@ -35,6 +35,7 @@ public abstract class Document {
     private Bibliotheque bibliotheque;
 
     @ManyToMany
+    @ToString.Exclude
     private List<Emprunt> emprunts = new ArrayList<>();
     private int exemplaires;
 

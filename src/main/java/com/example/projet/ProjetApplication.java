@@ -11,7 +11,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.print.Doc;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class ProjetApplication implements CommandLineRunner {
@@ -55,5 +58,10 @@ public class ProjetApplication implements CommandLineRunner {
         bibliothequeService.addLivreToBibliotheque(livre.getId(), bibliotheque.getId());
         bibliothequeService.addCDToBibliotheque(cd.getId(), bibliotheque.getId());
         bibliothequeService.addDVDToBibliotheque(dvd.getId(), bibliotheque.getId());
+
+        List<Document> documents = bibliothequeService.findByNameDocuments("Pokemon");
+        for (Document document : documents){
+            System.out.println(document);
+        }
     }
 }

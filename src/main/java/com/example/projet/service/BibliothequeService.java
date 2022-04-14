@@ -42,6 +42,7 @@ public class BibliothequeService {
         return bibliothequeRepositery.save(bibliotheque);
     }
 
+    @Transactional
     public void addLivreToBibliotheque(long livreId, long bibliothequeId) {
         var livreOpt = livreRepositery.findByIdWithBibliotheque(livreId);
         var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
@@ -58,6 +59,7 @@ public class BibliothequeService {
         bibliothequeRepositery.save(bibliotheque);
     }
 
+    @Transactional
     public void addCDToBibliotheque(long cdId, long bibliothequeId) {
         var cdOpt = cdRepositery.findByIdWithBibliotheque(cdId);
         var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
@@ -74,6 +76,7 @@ public class BibliothequeService {
         bibliothequeRepositery.save(bibliotheque);
     }
 
+    @Transactional
     public void addDVDToBibliotheque(long dvdId, long bibliothequeId) {
         var dvdOpt = dvdRepositery.findByIdWithBibliotheque(dvdId);
         var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
@@ -99,6 +102,7 @@ public class BibliothequeService {
         return documentsOpt.get();
     }
 
+    @Transactional
     public List<Document> findByAuteurDocuments(String auteur) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByAuteurDocuments(auteur);
         if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
@@ -107,6 +111,7 @@ public class BibliothequeService {
         return documentsOpt.get();
     }
 
+    @Transactional
     public List<Document> findByDateParutionDocuments(LocalDate dateParution) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByDateParutionDocuments(dateParution);
         if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
@@ -115,6 +120,7 @@ public class BibliothequeService {
         return documentsOpt.get();
     }
 
+    @Transactional
     public List<Document> findByGenreDocuments(String genre) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByGenreDocuments(genre);
         if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){

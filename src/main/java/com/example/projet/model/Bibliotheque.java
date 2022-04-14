@@ -4,6 +4,8 @@ import com.example.projet.model.document.Document;
 import com.example.projet.model.utilisateur.Utilisateur;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

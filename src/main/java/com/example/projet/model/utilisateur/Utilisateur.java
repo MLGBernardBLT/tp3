@@ -3,6 +3,7 @@ package com.example.projet.model.utilisateur;
 import com.example.projet.model.Bibliotheque;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public abstract class Utilisateur {
 
     @ManyToOne
     @JoinColumn(name = "bibliotheque_id")
+    @ToString.Exclude
     private Bibliotheque bibliotheque;
 
     public Utilisateur(String nom, String prenom) {

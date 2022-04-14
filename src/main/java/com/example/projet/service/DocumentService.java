@@ -9,7 +9,6 @@ import com.example.projet.repositery.LivreRepositery;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.Properties;
 
 
 @Component
@@ -30,15 +29,27 @@ public class DocumentService {
         return livreRepositery.save(new Livre(nom, auteur, editeur, dateParution, genre, nbrePage));
     }
 
+    public Livre saveLivre(Livre livre){
+        return livreRepositery.save(livre);
+    }
+
     public CD saveCD(String nom, String auteur, String editeur,
                      LocalDate dateParution,
                      String genre) {
         return cdRepositery.save(new CD(nom, auteur, editeur, dateParution, genre));
     }
 
+    public CD saveCD(CD cd){
+        return cdRepositery.save(cd);
+    }
+
     public DVD saveDVD(String nom, String regiseur, String editeur,
                        LocalDate dateParution,
                        String genre) {
         return dvdRepositery.save(new DVD(nom, regiseur, editeur, dateParution, genre));
+    }
+
+    public DVD saveDVD(DVD dvd){
+        return dvdRepositery.save(dvd);
     }
 }

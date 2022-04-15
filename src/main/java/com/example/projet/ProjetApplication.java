@@ -7,18 +7,17 @@ import com.example.projet.model.document.DVD;
 import com.example.projet.model.document.Document;
 import com.example.projet.model.document.Livre;
 import com.example.projet.model.utilisateur.Emprunteur;
-import com.example.projet.model.utilisateur.Utilisateur;
 import com.example.projet.service.BibliothequeService;
 import com.example.projet.service.DocumentService;
 import com.example.projet.service.EmpruntService;
 import com.example.projet.service.UtilisateurService;
-import org.apache.catalina.User;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @SpringBootApplication
@@ -108,7 +107,11 @@ public class ProjetApplication implements CommandLineRunner {
         List<Document> rechercheDocumentGenre3 = bibliothequeService.findByGenreDocuments("album");
 //        System.out.println(rechercheDocumentGenre3);
 
-        final Emprunt emprunt1 = empruntService.saveEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
+        final Optional<Emprunt> emprunt1 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
                                                             LocalDateTime.now().plusDays(21));
+
+        final Optional<Emprunt> emprunt2 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
+                LocalDateTime.now().plusDays(21));
+
     }
 }

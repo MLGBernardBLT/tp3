@@ -119,7 +119,16 @@ public class ProjetApplication implements CommandLineRunner {
         final Optional<Emprunt> emprunt3 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(21));
 
-        final Optional<List<Document>> documentsDeEmprunteur = utilisateurService.getDocumentsByEmprunteur(emprunteur.getId());
+        final Optional<List<Emprunt>> listeEmpruntDeEmprunteur = utilisateurService
+                .getEmpruntsByEmprunteur(emprunteur.getId());
+        if(listeEmpruntDeEmprunteur.isPresent()){
+            for (Emprunt emprunt : listeEmpruntDeEmprunteur.get()){
+                System.out.println(emprunt);
+            }
+        }
+
+        final Optional<List<Document>> documentsDeEmprunteur = utilisateurService
+                .getDocumentsByEmprunteur(emprunteur.getId());
         System.out.println(documentsDeEmprunteur.isEmpty());
         if(documentsDeEmprunteur.isPresent()){
             for (Document document : documentsDeEmprunteur.get()){

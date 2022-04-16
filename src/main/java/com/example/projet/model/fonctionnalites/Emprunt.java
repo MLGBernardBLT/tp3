@@ -27,6 +27,7 @@ public class Emprunt {
             joinColumns = @JoinColumn(name = "document_id"),
             inverseJoinColumns = @JoinColumn(name = "emprunt_id")
     )
+    @ToString.Exclude
     private List<Document> documents = new ArrayList<>();
 
     @ManyToOne

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/emprunteurcreate}" object="${emprunteurForm}" method="post">
+    <input type="hidden" field="*{id}"/>
+    <table>
+        <tr>
+            <td><label>nom</label></td>
+            <td><input type="text" field="*{nom}"/></td>
+            <td id="${#fields.hasErrors('nom')}" errors="*{nom}">nom invalide</td>
+        </tr>
+        <tr>
+            <td><label>prenom</label></td>
+            <td><input type="text" field="*{prenom}"/></td>
+            <td id="${#fields.hasErrors('prenom')}" errors="*{prenom}">prenom invalide</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Sauvegarder"/></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

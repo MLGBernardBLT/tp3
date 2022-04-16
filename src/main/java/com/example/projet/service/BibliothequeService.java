@@ -24,11 +24,11 @@ public class BibliothequeService {
     private EmprunteurRepositery emprunteurRepositery;
 
     public BibliothequeService(BibliothequeRepositery bibliothequeRepositery,
-                                LivreRepositery livreRepositery,
-                                CDRepository cdRepositery,
-                                DVDRepositery dvdRepositery,
-                                DocumentRepositery documentRepositery,
-                                EmprunteurRepositery emprunteurRepositery) {
+                               LivreRepositery livreRepositery,
+                               CDRepository cdRepositery,
+                               DVDRepositery dvdRepositery,
+                               DocumentRepositery documentRepositery,
+                               EmprunteurRepositery emprunteurRepositery) {
         this.bibliothequeRepositery = bibliothequeRepositery;
         this.livreRepositery = livreRepositery;
         this.cdRepositery = cdRepositery;
@@ -50,7 +50,7 @@ public class BibliothequeService {
         var livreOpt = livreRepositery.findByIdWithBibliotheque(livreId);
         var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
 
-        if(livreOpt.isEmpty() || bibliothequeOpt.isEmpty()){
+        if (livreOpt.isEmpty() || bibliothequeOpt.isEmpty()) {
             return;
         }
         var livre = livreOpt.get();
@@ -67,7 +67,7 @@ public class BibliothequeService {
         var cdOpt = cdRepositery.findByIdWithBibliotheque(cdId);
         var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
 
-        if(cdOpt.isEmpty() || bibliothequeOpt.isEmpty()){
+        if (cdOpt.isEmpty() || bibliothequeOpt.isEmpty()) {
             return;
         }
         var cd = cdOpt.get();
@@ -84,7 +84,7 @@ public class BibliothequeService {
         var dvdOpt = dvdRepositery.findByIdWithBibliotheque(dvdId);
         var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
 
-        if(dvdOpt.isEmpty() || bibliothequeOpt.isEmpty()){
+        if (dvdOpt.isEmpty() || bibliothequeOpt.isEmpty()) {
             return;
         }
         var dvd = dvdOpt.get();
@@ -101,7 +101,7 @@ public class BibliothequeService {
         var utilisateurOpt = emprunteurRepositery.findByIdWithBibliotheque(emprunteurId);
         var bibliothequeOpt = bibliothequeRepositery.findById(bibliothequeId);
 
-        if(utilisateurOpt.isEmpty() || bibliothequeOpt.isEmpty()){
+        if (utilisateurOpt.isEmpty() || bibliothequeOpt.isEmpty()) {
             return;
         }
         var utilisateur = utilisateurOpt.get();
@@ -116,7 +116,7 @@ public class BibliothequeService {
     @Transactional
     public List<Document> findByNomDocuments(String nom) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByNomDocuments(nom);
-        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+        if (documentsOpt.isEmpty() || documentsOpt.get().isEmpty()) {
             throw new IllegalArgumentException("aucun document avec ce nom dans la base de données");
         }
         return documentsOpt.get();
@@ -125,7 +125,7 @@ public class BibliothequeService {
     @Transactional
     public List<Document> findByAuteurDocuments(String auteur) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByAuteurDocuments(auteur);
-        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+        if (documentsOpt.isEmpty() || documentsOpt.get().isEmpty()) {
             throw new IllegalArgumentException("aucun document avec cet auteur dans la base de données");
         }
         return documentsOpt.get();
@@ -134,7 +134,7 @@ public class BibliothequeService {
     @Transactional
     public List<Document> findByDateParutionDocuments(LocalDate dateParution) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByDateParutionDocuments(dateParution);
-        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+        if (documentsOpt.isEmpty() || documentsOpt.get().isEmpty()) {
             throw new IllegalArgumentException("aucun document avec cet auteur dans la base de données");
         }
         return documentsOpt.get();
@@ -143,7 +143,7 @@ public class BibliothequeService {
     @Transactional
     public List<Document> findByGenreDocuments(String genre) {
         Optional<List<Document>> documentsOpt = documentRepositery.findByGenreDocuments(genre);
-        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+        if (documentsOpt.isEmpty() || documentsOpt.get().isEmpty()) {
             throw new IllegalArgumentException("aucun document avec cet auteur dans la base de données");
         }
         return documentsOpt.get();

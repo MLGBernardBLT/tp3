@@ -12,6 +12,7 @@ import com.example.projet.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -55,7 +56,8 @@ public class ProjetApplication implements CommandLineRunner {
         final Livre livre = documentService.createLivre("red Eyes Sword", "Takahiro", "Kurokawa",
                 LocalDate.of(2010, 8, 21), "roman", 235, 1);
 //        System.out.println(livre);
-        final CD cd = documentService.createCD("Rise of the red Monarch", "AmaLee", "Leegion Creative",
+        final CD cd = documentService.createCD("Rise of the red Monarch", "AmaLee",
+                "Leegion Creative",
                 LocalDate.of(2022, 9, 21), "album", 1);
 //        System.out.println(cd);
         final DVD dvd = documentService.createDVD("Pokemon the Movie : Mewtwo Strike Back !",
@@ -108,21 +110,24 @@ public class ProjetApplication implements CommandLineRunner {
         List<Document> rechercheDocumentGenre3 = bibliothequeService.findByGenreDocuments("album");
 //        System.out.println(rechercheDocumentGenre3);
 
-        final Optional<Emprunt> emprunt1 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
-                                                            LocalDateTime.now().plusDays(21));
+        final Optional<Emprunt> emprunt1 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1,
+                LocalDateTime.now(),
+                LocalDateTime.now().plusDays(21));
 
-        final Optional<Emprunt> emprunt2 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
+        final Optional<Emprunt> emprunt2 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1,
+                LocalDateTime.now(),
                 LocalDateTime.now().plusDays(21));
 
         final RetourEmprunt retour1 = retourEmpruntService.createRetour(emprunt1, LocalDateTime.now());
 
-        final Optional<Emprunt> emprunt3 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
+        final Optional<Emprunt> emprunt3 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1,
+                LocalDateTime.now(),
                 LocalDateTime.now().plusDays(21));
 
         final Optional<List<Emprunt>> listeEmpruntDeEmprunteur = utilisateurService
                 .getEmpruntsByEmprunteur(emprunteur.getId());
-        if(listeEmpruntDeEmprunteur.isPresent()){
-            for (Emprunt emprunt : listeEmpruntDeEmprunteur.get()){
+        if (listeEmpruntDeEmprunteur.isPresent()) {
+            for (Emprunt emprunt : listeEmpruntDeEmprunteur.get()) {
                 System.out.println(emprunt);
             }
         }
@@ -130,8 +135,8 @@ public class ProjetApplication implements CommandLineRunner {
         final Optional<List<Document>> documentsDeEmprunteur = utilisateurService
                 .getDocumentsByEmprunteur(emprunteur.getId());
         System.out.println(documentsDeEmprunteur.isEmpty());
-        if(documentsDeEmprunteur.isPresent()){
-            for (Document document : documentsDeEmprunteur.get()){
+        if (documentsDeEmprunteur.isPresent()) {
+            for (Document document : documentsDeEmprunteur.get()) {
                 System.out.println(document);
             }
         }

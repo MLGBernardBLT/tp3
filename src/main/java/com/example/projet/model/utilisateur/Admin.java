@@ -15,7 +15,7 @@ public class Admin extends Utilisateur {
     @Column(name = "admin_id")
     private long id;
 
-    public Admin(String nom, String prenom){
+    public Admin(String nom, String prenom) {
         super(nom, prenom);
     }
 }

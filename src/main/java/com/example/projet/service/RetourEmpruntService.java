@@ -19,17 +19,17 @@ public class RetourEmpruntService {
     private final DocumentRepositery documentRepositery;
 
     public RetourEmpruntService(RetourEmpruntRepositery retourEmpruntRepositery,
-                                DocumentRepositery documentRepositery){
+                                DocumentRepositery documentRepositery) {
         this.retourEmpruntRepositery = retourEmpruntRepositery;
         this.documentRepositery = documentRepositery;
     }
 
     public RetourEmprunt createRetour(Optional<Emprunt> emprunt, LocalDateTime date_Retour) {
-        if(emprunt.isEmpty()){
+        if (emprunt.isEmpty()) {
             return null;
         }
         List<Document> documentsEmpruntes = emprunt.get().getDocuments();
-        for(Document document : documentsEmpruntes){
+        for (Document document : documentsEmpruntes) {
             document.exemplaireRetourner();
             documentRepositery.save(document);
         }

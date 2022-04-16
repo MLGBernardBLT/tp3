@@ -54,7 +54,7 @@ public abstract class Document {
         this.exemplaires = exemplaires;
     }
 
-    public void exemplaireRetourner(){
+    public void exemplaireRetourner() {
         exemplaires++;
     }
 

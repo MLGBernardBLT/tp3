@@ -13,4 +13,6 @@ public interface EmprunteurRepositery extends JpaRepository<Emprunteur, Long> {
     @Query(value = "SELECT u FROM Utilisateur u LEFT JOIN FETCH u.bibliotheque WHERE u.id = :emprunteurId")
     Optional<Emprunteur> findByIdWithBibliotheque(@Param("emprunteurId") long emprunteurId);
 
+    @Query(value = "SELECT u FROM Utilisateur u WHERE u.id = :emprunteurId")
+    Emprunteur findEmprunteurById(@Param("emprunteurId") long emprunteurId);
 }

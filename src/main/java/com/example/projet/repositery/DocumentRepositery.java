@@ -23,7 +23,8 @@ public interface DocumentRepositery extends JpaRepository<Document, Long> {
     @Query(value = "SELECT d FROM Document d LEFT JOIN FETCH d.bibliotheque b WHERE d.genre LIKE :genreDocument")
     Optional<List<Document>> findByGenreDocuments(@Param("genreDocument") String genre);
 
-    @Query(value = "SELECT DISTINCT d FROM Document d LEFT JOIN FETCH d.emprunts e LEFT JOIN FETCH e.emprunteur ee WHERE ee.id = :emprunteurId")
+    @Query(value = "SELECT DISTINCT d FROM Document d LEFT JOIN FETCH d.emprunts e LEFT JOIN FETCH e.emprunteur " +
+            "ee WHERE ee.id = :emprunteurId")
     Optional<List<Document>> getDocumentsByEmprunteur(@Param("emprunteurId") long emprunteurId);
 
 }

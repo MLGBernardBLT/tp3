@@ -18,16 +18,17 @@ public class EmpruntService {
     private DocumentRepositery documentRepositery;
 
     public EmpruntService(EmpruntRepositery emprunteurRepositery,
-                          DocumentRepositery documentRepositery){
+                          DocumentRepositery documentRepositery) {
         this.empruntRepositery = emprunteurRepositery;
         this.documentRepositery = documentRepositery;
     }
 
     @Transactional
-    public Optional<Emprunt> createEmprunt(Emprunteur emprunteur, List<Document> documentsEmpruntes, LocalDateTime debut, LocalDateTime fin) {
+    public Optional<Emprunt> createEmprunt(Emprunteur emprunteur, List<Document> documentsEmpruntes,
+                                           LocalDateTime debut, LocalDateTime fin) {
         final Emprunt emprunt = new Emprunt(emprunteur, documentsEmpruntes, debut, fin);
-        for(Document document : documentsEmpruntes){
-            if(!empruntPossible(document)){
+        for (Document document : documentsEmpruntes) {
+            if (!empruntPossible(document)) {
                 return Optional.empty();
             }
             document.exemplaireEmprunter();
@@ -36,7 +37,7 @@ public class EmpruntService {
         return Optional.of(empruntRepositery.save(emprunt));
     }
 
-    private boolean empruntPossible(Document document){
+    private boolean empruntPossible(Document document) {
         return document.getExemplaires() > 0;
     }
 }

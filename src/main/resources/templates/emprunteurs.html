@@ -6,22 +6,23 @@
 </head>
 <body>
 <h1 th:text="${h1Title}"></h1>
-<table>
-    <thead>
-        <th>nom</th>
-        <th>prenom</th>
-        <th>emprunts</th>
-    </thead>
-    <tbody>
-        <th:block th:each="emprunteur, stat : ${emprunteurs}">
-            <tr>
-                <td th:text="${emprunteur.getNom()}"></td>
-                <td th:text="${emprunteur.getPrenom()}"></td>
-                <td th:text="${emprunteur.getEmprunts()}"></td>
-            </tr>
-        </th:block>
-    </tbody>
-</table>
+    <table>
+        <thead>
+            <th>nom</th>
+            <th>prenom</th>
+            <th>emprunts</th>
+        </thead>
+        <tbody>
+            <th:block th:each="emprunteur, stat : ${emprunteurs}">
+                <tr>
+                    <td th:text="${emprunteur.getNom()}"></td>
+                    <td th:text="${emprunteur.getPrenom()}"></td>
+                    <td th:text="${emprunteur.getEmprunts()}"></td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+    <a th:href="@{'/emprunteurcreate'}">Créer un nouveau emprunteur</a>
 
 </body>
 </html>

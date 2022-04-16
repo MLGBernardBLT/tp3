@@ -20,7 +20,7 @@ public class UtilisateurService {
 
     public UtilisateurService(EmprunteurRepositery emprunteurRepositery,
                               DocumentRepositery documentRepositery,
-                              EmpruntRepositery empruntRepositery){
+                              EmpruntRepositery empruntRepositery) {
         this.emprunteurRepositery = emprunteurRepositery;
         this.documentRepositery = documentRepositery;
         this.empruntRepositery = empruntRepositery;
@@ -32,7 +32,7 @@ public class UtilisateurService {
 
     public Optional<List<Emprunt>> getEmpruntsByEmprunteur(long emprunteurId) {
         Optional<List<Emprunt>> empruntsOpt = empruntRepositery.getEmpruntsByEmprunteur(emprunteurId);
-        if(empruntsOpt.isEmpty() || empruntsOpt.get().isEmpty()){
+        if (empruntsOpt.isEmpty() || empruntsOpt.get().isEmpty()) {
             return Optional.empty();
         }
         return empruntsOpt;
@@ -40,7 +40,7 @@ public class UtilisateurService {
 
     public Optional<List<Document>> getDocumentsByEmprunteur(long emprunteurId) {
         Optional<List<Document>> documentsOpt = documentRepositery.getDocumentsByEmprunteur(emprunteurId);
-        if(documentsOpt.isEmpty() || documentsOpt.get().isEmpty()){
+        if (documentsOpt.isEmpty() || documentsOpt.get().isEmpty()) {
             return Optional.empty();
         }
         return documentsOpt;
@@ -48,5 +48,13 @@ public class UtilisateurService {
 
     public List<Emprunteur> findAllEmprunteurs() {
         return emprunteurRepositery.findAll();
+    }
+
+    public Emprunteur createEmprunteur(Emprunteur emprunteur) {
+        return emprunteurRepositery.save(emprunteur);
+    }
+
+    public Emprunteur findEmprunteurById(long emprunteurId) {
+        return emprunteurRepositery.findEmprunteurById(emprunteurId);
     }
 }

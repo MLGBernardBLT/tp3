@@ -35,6 +35,11 @@ public abstract class Document {
     private Bibliotheque bibliotheque;
 
     @ManyToMany
+    @JoinTable(
+            name = "document_emprunt",
+            joinColumns = @JoinColumn(name = "emprunt_id"),
+            inverseJoinColumns = @JoinColumn(name = "document_id")
+    )
     @ToString.Exclude
     private List<Emprunt> emprunts = new ArrayList<>();
     private int exemplaires;

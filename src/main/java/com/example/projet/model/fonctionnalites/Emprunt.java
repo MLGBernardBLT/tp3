@@ -22,10 +22,14 @@ public class Emprunt {
     private long id;
 
     @ManyToMany
+    @JoinTable(
+            name = "document_emprunt",
+            joinColumns = @JoinColumn(name = "document_id"),
+            inverseJoinColumns = @JoinColumn(name = "emprunt_id")
+    )
     private List<Document> documents = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "emprunteur_id")
     @ToString.Exclude
     private Utilisateur emprunteur = new Emprunteur();
 

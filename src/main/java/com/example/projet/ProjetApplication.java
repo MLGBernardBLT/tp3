@@ -115,5 +115,18 @@ public class ProjetApplication implements CommandLineRunner {
                 LocalDateTime.now().plusDays(21));
 
         final RetourEmprunt retour1 = retourEmpruntService.createRetour(emprunt1, LocalDateTime.now());
+
+        final Optional<Emprunt> emprunt3 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
+                LocalDateTime.now().plusDays(21));
+
+        final Optional<List<Document>> documentsDeEmprunteur = utilisateurService.getDocumentsByEmprunteur(emprunteur.getId());
+        System.out.println(documentsDeEmprunteur.isEmpty());
+        if(documentsDeEmprunteur.isPresent()){
+            for (Document document : documentsDeEmprunteur.get()){
+                System.out.println(document);
+            }
+        }
+
+
     }
 }

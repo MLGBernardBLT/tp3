@@ -1,7 +1,7 @@
 package com.example.projet.model.document;
 
 import com.example.projet.model.Bibliotheque;
-import com.example.projet.model.Emprunt;
+import com.example.projet.model.fonctionnalites.Emprunt;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -49,7 +49,7 @@ public abstract class Document {
         this.exemplaires = exemplaires;
     }
 
-    public void ajoutExemplaire() {
+    public void exemplaireRetourner(){
         exemplaires++;
     }
 

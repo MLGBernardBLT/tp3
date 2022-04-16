@@ -12,7 +12,7 @@ public class UtilisateurService {
         this.emprunteurRepositery = emprunteurRepositery;
     }
 
-    public Emprunteur saveEmprunteur(String nom, String prenom) {
+    public Emprunteur createEmprunteur(String nom, String prenom) {
         return emprunteurRepositery.save(new Emprunteur(nom, prenom));
     }
 }

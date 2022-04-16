@@ -1,4 +1,4 @@
-package com.example.projet.model;
+package com.example.projet.model.fonctionnalites;
 
 import com.example.projet.model.document.Document;
 import com.example.projet.model.utilisateur.Emprunteur;

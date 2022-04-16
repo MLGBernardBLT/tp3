@@ -1,7 +1,7 @@
 package com.example.projet;
 
 import com.example.projet.model.Bibliotheque;
-import com.example.projet.model.Emprunt;
+import com.example.projet.model.fonctionnalites.Emprunt;
 import com.example.projet.model.document.CD;
 import com.example.projet.model.document.DVD;
 import com.example.projet.model.document.Document;
@@ -48,20 +48,20 @@ public class ProjetApplication implements CommandLineRunner {
         // même si on n'a qu'une seule bibliotheque, je veux tout de même
         // avoir une bibliotheque dans ma base de données qui est
         // JavaTown.
-        final Bibliotheque bibliotheque = bibliothequeService.saveBibliotheque("JavaTown");
+        final Bibliotheque bibliotheque = bibliothequeService.createBibliotheque("JavaTown");
 //        System.out.println(bibliotheque);
 
-        final Livre livre = documentService.saveLivre("red Eyes Sword", "Takahiro", "Kurokawa",
+        final Livre livre = documentService.createLivre("red Eyes Sword", "Takahiro", "Kurokawa",
                 LocalDate.of(2010, 8, 21), "roman", 235, 1);
 //        System.out.println(livre);
-        final CD cd = documentService.saveCD("Rise of the red Monarch", "AmaLee", "Leegion Creative",
+        final CD cd = documentService.createCD("Rise of the red Monarch", "AmaLee", "Leegion Creative",
                 LocalDate.of(2022, 9, 21), "album", 1);
 //        System.out.println(cd);
-        final DVD dvd = documentService.saveDVD("Pokemon the Movie : Mewtwo Strike Back !",
+        final DVD dvd = documentService.createDVD("Pokemon the Movie : Mewtwo Strike Back !",
                 "Kunihiko Yuyama", "Choji Yoshikawa", LocalDate.of(1998, 7, 18),
                 "film", 1);
 //        System.out.println(dvd);
-        final Emprunteur emprunteur = utilisateurService.saveEmprunteur("Thomas Laforest", "Bernard");
+        final Emprunteur emprunteur = utilisateurService.createEmprunteur("Thomas Laforest", "Bernard");
 
 
         bibliothequeService.saveBibliotheque(bibliotheque);

@@ -23,33 +23,21 @@ public class DocumentService {
         this.dvdRepositery = dvdRepositery;
     }
 
-    public Livre saveLivre(String nom, String auteur, String editeur,
-                           LocalDate dateParution, String genre,
-                           int nbrePage, int exemplaires) {
+    public Livre createLivre(String nom, String auteur, String editeur,
+                             LocalDate dateParution, String genre,
+                             int nbrePage, int exemplaires) {
         return livreRepositery.save(new Livre(nom, auteur, editeur, dateParution, genre, nbrePage, exemplaires));
     }
 
-    public Livre saveLivre(Livre livre){
-        return livreRepositery.save(livre);
-    }
-
-    public CD saveCD(String nom, String auteur, String editeur,
-                     LocalDate dateParution,
-                     String genre, int exemplaires) {
+    public CD createCD(String nom, String auteur, String editeur,
+                       LocalDate dateParution,
+                       String genre, int exemplaires) {
         return cdRepositery.save(new CD(nom, auteur, editeur, dateParution, genre, exemplaires));
     }
 
-    public CD saveCD(CD cd){
-        return cdRepositery.save(cd);
-    }
-
-    public DVD saveDVD(String nom, String regiseur, String editeur,
-                       LocalDate dateParution,
-                       String genre, int exemplaires) {
+    public DVD createDVD(String nom, String regiseur, String editeur,
+                         LocalDate dateParution,
+                         String genre, int exemplaires) {
         return dvdRepositery.save(new DVD(nom, regiseur, editeur, dateParution, genre, exemplaires));
-    }
-
-    public DVD saveDVD(DVD dvd){
-        return dvdRepositery.save(dvd);
     }
 }

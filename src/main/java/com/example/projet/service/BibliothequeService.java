@@ -37,7 +37,7 @@ public class BibliothequeService {
         this.emprunteurRepositery = emprunteurRepositery;
     }
 
-    public Bibliotheque saveBibliotheque(String nomBiblio) {
+    public Bibliotheque createBibliotheque(String nomBiblio) {
         return bibliothequeRepositery.save(new Bibliotheque(nomBiblio));
     }
 

@@ -1,18 +1,16 @@
 package com.example.projet.service;
 
-import com.example.projet.model.Emprunt;
+import com.example.projet.model.fonctionnalites.Emprunt;
 import com.example.projet.model.document.Document;
 import com.example.projet.model.utilisateur.Emprunteur;
 import com.example.projet.repositery.DocumentRepositery;
 import com.example.projet.repositery.EmpruntRepositery;
-import com.example.projet.repositery.EmprunteurRepositery;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 
 @Component
 public class EmpruntService {

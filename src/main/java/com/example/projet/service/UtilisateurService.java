@@ -46,4 +46,7 @@ public class UtilisateurService {
         return documentsOpt;
     }
 
+    public List<Emprunteur> findAllEmprunteurs() {
+        return emprunteurRepositery.findAll();
+    }
 }

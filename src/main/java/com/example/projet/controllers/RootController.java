@@ -1,6 +1,7 @@
 package com.example.projet.controllers;
 
 import com.example.projet.service.BibliothequeService;
+import com.example.projet.service.UtilisateurService;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 
@@ -14,16 +15,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RootController {
     Logger logger = LoggerFactory.getLogger(RootController.class);
 
-    private BibliothequeService bibliothequeService;
+    private final UtilisateurService utilisateurService;
 
-    public RootController(BibliothequeService bibliothequeService) {
+    private final BibliothequeService bibliothequeService;
+
+    public RootController(BibliothequeService bibliothequeService,
+                          UtilisateurService utilisateurService) {
         this.bibliothequeService = bibliothequeService;
+        this.utilisateurService = utilisateurService;
     }
 
     @GetMapping("/")
     public String getRootRequest(Model model){
         model.addAttribute("pageTitle", "Index");
-        model.addAttribute("h1Text", "Première page");
+        model.addAttribute("h1Text", "Bibliotheque");
         return "index";
+    }
+
+    @GetMapping("/emprunteurs")
+    public String getEmprunteurs(Model model) {
+        model.addAttribute("h1Title", "Les emprunteurs :");
+        var emprunteurs = utilisateurService.findAllEmprunteurs();
+        model.addAttribute("emprunteurs", emprunteurs);
+        return "emprunteurs";
     }
 }

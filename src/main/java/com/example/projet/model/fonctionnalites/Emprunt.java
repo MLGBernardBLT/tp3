@@ -29,14 +29,18 @@ public class Emprunt {
     @ToString.Exclude
     private Utilisateur emprunteur = new Emprunteur();
 
+    @OneToOne()
+    @ToString.Exclude
+    private RetourEmprunt retour;
+
     private LocalDateTime dateEmprunt;
-    private LocalDateTime dateRemiseMax;
+    private LocalDateTime dateRetourMax;
 
     public Emprunt(Utilisateur emprunteur, List<Document> documents,
                    LocalDateTime dateEmprunt, LocalDateTime dateRemiseMax) {
         this.emprunteur = emprunteur;
         this.documents = documents;
         this.dateEmprunt = dateEmprunt;
-        this.dateRemiseMax = dateRemiseMax;
+        this.dateRetourMax = dateRemiseMax;
     }
 }

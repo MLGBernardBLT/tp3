@@ -6,11 +6,9 @@ import com.example.projet.model.document.CD;
 import com.example.projet.model.document.DVD;
 import com.example.projet.model.document.Document;
 import com.example.projet.model.document.Livre;
+import com.example.projet.model.fonctionnalites.RetourEmprunt;
 import com.example.projet.model.utilisateur.Emprunteur;
-import com.example.projet.service.BibliothequeService;
-import com.example.projet.service.DocumentService;
-import com.example.projet.service.EmpruntService;
-import com.example.projet.service.UtilisateurService;
+import com.example.projet.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,18 +23,21 @@ public class ProjetApplication implements CommandLineRunner {
 
 
     private final BibliothequeService bibliothequeService;
-    private DocumentService documentService;
-    private UtilisateurService utilisateurService;
-    private EmpruntService empruntService;
+    private final DocumentService documentService;
+    private final UtilisateurService utilisateurService;
+    private final EmpruntService empruntService;
+    private final RetourEmpruntService retourEmpruntService;
 
     public ProjetApplication(BibliothequeService bibliothequeService,
                              DocumentService documentService,
                              UtilisateurService utilisateurService,
-                             EmpruntService empruntService) {
+                             EmpruntService empruntService,
+                             RetourEmpruntService retourEmpruntService) {
         this.bibliothequeService = bibliothequeService;
         this.documentService = documentService;
         this.utilisateurService = utilisateurService;
         this.empruntService = empruntService;
+        this.retourEmpruntService = retourEmpruntService;
     }
 
     public static void main(String[] args) {
@@ -113,5 +114,6 @@ public class ProjetApplication implements CommandLineRunner {
         final Optional<Emprunt> emprunt2 = empruntService.createEmprunt(emprunteur, rechercheDocumentAuteur1, LocalDateTime.now(),
                 LocalDateTime.now().plusDays(21));
 
+        final RetourEmprunt retour1 = retourEmpruntService.createRetour(emprunt1, LocalDateTime.now());
     }
 }
